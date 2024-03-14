@@ -1,5 +1,6 @@
 import { Colors } from "@/constants"; // isko thik kar lena ye sab typescript ka import hai.
 import { Link, useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 import {
   View,
   Text,
@@ -13,6 +14,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Login() {
   const navigation = useNavigation();
+
+  useEffect(()=>{
+    navigation.navigate("main" as never)
+  },[])
   return (
     <SafeAreaView style={styles.container}>
       {/* upper section  */}
@@ -59,7 +64,7 @@ export default function Login() {
 
           <View style={styles.linkbtnBox}>
             <Text style={styles.text}>Don't have an account? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=> navigation.navigate("register" as never)}>
               <Text style={{...styles.text ,color:Colors.Link}}>Create Account</Text>
             </TouchableOpacity>
           </View>
@@ -95,9 +100,9 @@ const styles = StyleSheet.create({
   formContainer: {
     backgroundColor: Colors.White,
     marginTop: -12,
-    paddingHorizontal: 15,
+    paddingHorizontal: 20,
 
-    borderRadius: 12,
+    borderRadius: 22,
     flex: 1,
   },
   input: {

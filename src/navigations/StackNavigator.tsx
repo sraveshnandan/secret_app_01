@@ -4,11 +4,13 @@ import {
   HomeScreen,
   LoginScreen,
   ProfileScreen,
+  RegisterScreen,
   SearchScreen,
 } from "@/screens";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Colors } from "@/constants";
 
 export default function () {
@@ -18,8 +20,9 @@ export default function () {
     return (
       <Tab.Navigator
         screenOptions={{
-          tabBarActiveTintColor: Colors.DarkBg,
+          tabBarActiveTintColor: Colors.Primary,
           headerShown: false,
+
         }}
       >
         <Tab.Screen
@@ -55,6 +58,24 @@ export default function () {
           }}
         />
 
+<Tab.Screen
+          name="Notification"
+          component={ProfileScreen}
+          options={{
+            tabBarLabelStyle: {
+              display: "none",
+            },
+            tabBarIcon: ({ focused, color }) => (
+              <MaterialCommunityIcons
+                name={focused ? "bell-badge" : "bell-badge-outline"}
+                color={color}
+                size={25}
+              />
+            ),
+          }}
+        />
+
+
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
@@ -78,6 +99,7 @@ export default function () {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="login" component={LoginScreen} />
+        <Stack.Screen name="register" component={RegisterScreen}/>
         <Stack.Screen name="main" component={BottomTab} />
       </Stack.Navigator>
     </NavigationContainer>
